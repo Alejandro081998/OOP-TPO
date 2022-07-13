@@ -111,7 +111,7 @@ public class GuiCallcenter extends GuiUsuarioBase {
 
 		int nroSeleccionado = guiValidarInt("Ingrese DNI de cliente:");
 
-		for (Cliente c : clientes) {
+		for (Cliente c : clientesActivos) {
 			if (c.getDni() == nroSeleccionado) {
 				seleccionCliente = CALLCENTER.getClientesDNI(nroSeleccionado);
 				existeCliente = true;
@@ -125,10 +125,16 @@ public class GuiCallcenter extends GuiUsuarioBase {
 		}
 
 		if (existeCliente) {
-			if (clientes.size() == 0) {
-				seleccionCliente = null;
-				throw new AsignacionException("El cliente tiene servicios pendientes");
+			
+			seleccionCliente = null;
+			
+			for(Cliente c : clientes) {
+				if(c.getDni() == nroSeleccionado) 
+					seleccionCliente = CALLCENTER.getClientesDNI(nroSeleccionado);
 			}
+			
+			if(seleccionCliente == null)
+				throw new AsignacionException("El cliente tiene servicios pendientes");
 		}
 
 		/*

@@ -87,7 +87,7 @@ public class GuiAdmin extends GuiUsuarioBase {
 	private void invocarEdicionViaje() throws Exception {
 		double nuevoCV = guiValidarDouble("Ingrese nuevo costo para viaje <ACTUAL: " + ADMIN.getCostoViaje() + ">");
 
-		ADMIN.modificarCostoCombustible(nuevoCV);
+		ADMIN.modificarCostoViaje(nuevoCV);
 		alert("Costo viaje cambiado a " + ADMIN.getCostoViaje());
 	}
 
